@@ -1,0 +1,51 @@
+name: IP2Free 每日自动领取并拉取代理
+
+on:
+  schedule:
+    - cron: '0 16 * * *'
+  workflow_dispatch:
+
+jobs:
+  pull_ip2free:
+    runs-on: ubuntu-latest
+    name: 自动领取活动奖励并拉取代理
+
+    steps:
+      - name: 获取项目代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 生成 .env 配置
+        run: |
+          cat > .env <<EOF
+          IP2FREE_EMAIL=${{ vars.IP2FREE_EMAIL }}
+          IP2FREE_PASSWORD=${{ secrets.IP2FREE_PASSWORD }}
+          IP2FREE_CONFIG_PATH=./output
+          IP2FREE_AUTO_CLAIM_REWARDS=true
+          IP2FREE_PROXY_SOURCE=both
+          IP2FREE_OUTPUT_FORMAT=yaml
+          IP2FREE_ACTIVITY_TASK_NAME_CONTAINS=
+          EOF
+
+      - name: 安装依赖
+        run: pip install -r requirements.txt
+
+      - name: 执行脚本
+        run: |
+          echo "开始执行 IP2FREE 自动任务"
+          python ip2free_agent.py
+          ls -lah output || true
+
+      - name: 上传生成的代理文件
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ip2free-proxies
+          path: |
+            output/proxies.yaml
+            output/proxies.txt
+          if-no-files-found: warn
