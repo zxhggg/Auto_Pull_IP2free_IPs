@@ -47,12 +47,6 @@ IP2FREE_ACTIVITY_TASK_NAME_CONTAINS=
 - `IP2FREE_OUTPUT_FORMAT`：导出格式，可选 `yaml` / `txt`
 - `IP2FREE_ACTIVITY_TASK_NAME_CONTAINS`：只自动领取任务名包含指定文本的任务；留空表示不筛选
 
-`txt` 导出格式示例：
-```text
-socks5://31.58.9.4:6077:qinlboxi:13txp426eu8r
-```
-一行一个代理。
-
 ### 使用方法
 ```bash
 python ip2free_agent.py
