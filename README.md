@@ -1,6 +1,6 @@
 # IP2FREE Agent
 
-这是一个 Python 脚本，上游项目https://github.com/Patrick130306/Auto_Pull_IP2Free_IPs 更新了一些新的支持。用来登录 IP2FREE、自动领取可领取的活动奖励、拉取免费代理和活动奖励代理，并导出 `yaml` 或 `txt` 格式的代理文件。
+这是一个 Python 脚本，基于[Patrick130306/Auto_Pull_IP2Free_IPs](https://github.com/Patrick130306/Auto_Pull_IP2Free_IPs) 更新了一些新的支持。用来登录 IP2FREE、自动领取可领取的活动奖励、拉取免费代理和活动奖励代理，并导出 `yaml` 或 `txt` 格式的代理文件。
 
 ### 功能特点
 - 从 `.env` 文件读取全部配置
